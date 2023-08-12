@@ -1,0 +1,12 @@
+.content {
+  background-color: $color-white;
+
+  display: grid;
+  grid-template-rows: min-content max-content min-content;
+}
+
+.tab {
+  min-height: 60vh;
+  padding: 2.5rem 3rem;
+  background-color: $color-gray;
+}

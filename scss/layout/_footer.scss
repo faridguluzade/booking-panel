@@ -1,0 +1,29 @@
+.footer {
+  padding: 2rem 3rem;
+}
+
+.btn-box {
+  @include flex;
+  justify-content: space-between;
+
+  .btn {
+    font-size: 1.2rem;
+    font-weight: $font-semiBold;
+    text-transform: uppercase;
+    padding: 0.9rem 1.4rem;
+    border-radius: 2px;
+    cursor: pointer;
+
+    &--back {
+      background-color: #f7f8fb;
+      border: 1px solid $color-border-gray;
+      color: #8f9ca7;
+    }
+
+    &--next {
+      color: $color-white;
+      background-color: $color-primary;
+      border: 1px solid $color-primary;
+    }
+  }
+}

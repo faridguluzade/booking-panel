@@ -1,0 +1,45 @@
+.sidebar {
+  background-color: #292d32;
+  padding: 3rem 3.7rem;
+
+  &__nav {
+  }
+
+  &__list {
+    @include flex-column(2.5rem);
+  }
+
+  &__item {
+  }
+
+  &__link:link,
+  &__link:visited {
+    @include flex;
+    gap: 1.2rem;
+    font-size: 1.4rem;
+    color: #626c76;
+  }
+
+  &__num {
+    font-size: 1.2rem;
+    color: $color-white;
+    font-weight: $font-semiBold;
+    border-radius: 100%;
+    background-color: #626c76;
+    height: 2.4rem;
+    width: 2.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  // FOR ACTIVE CLASS
+  &__link--active:link,
+  &__link--active:visited {
+    color: $color-active;
+
+    .sidebar__num {
+      background-color: $color-active;
+    }
+  }
+}

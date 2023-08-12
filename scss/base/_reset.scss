@@ -1,0 +1,18 @@
+a:link,
+a:visited {
+  display: inline-block;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+span {
+  display: inline-block;
+}
+
+*:focus {
+  outline: none;
+  // box-shadow: 0 0 0 0.3rem rgba($color-primary-light, 0.5);
+}

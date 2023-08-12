@@ -1,0 +1,34 @@
+.confirmation {
+  &__form {
+  }
+
+  &__input-box {
+  }
+
+  &__note-box {
+  }
+
+  &__title {
+  }
+
+  &__list {
+    @include flex-column(0.8rem);
+
+    background-color: $color-white;
+    padding: 1.9rem 2.6rem;
+  }
+
+  &__item {
+    @include flex;
+    gap: 1.2rem;
+    font-size: 1.4rem;
+  }
+
+  &__item span:first-child {
+    color: $color-primary;
+  }
+
+  &__item span:last-child {
+    font-weight: $font-light;
+  }
+}

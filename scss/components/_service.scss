@@ -1,0 +1,48 @@
+.service {
+  @include flex-column(1rem);
+
+  display: none;
+
+  // FOR ACTIVE CONTENT
+  &--active {
+    display: flex;
+  }
+
+  &__card {
+    @include flex;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    background-color: $color-white;
+    cursor: pointer;
+  }
+
+  &__wrapper {
+    @include flex;
+    gap: 2.2rem;
+  }
+
+  &__img {
+    border-radius: 50%;
+  }
+
+  &__title {
+    font-size: 1.4rem;
+    font-weight: $font-medium;
+    color: #292d32;
+  }
+
+  &__time {
+    display: inline-block;
+    font-size: 1.2rem;
+    color: #828f9a;
+    font-weight: $font-regular;
+    line-height: 19px; /* 158.333% */
+    margin-top: 5px;
+  }
+
+  &__price {
+    font-size: 2.6rem;
+    font-weight: $font-medium;
+    color: $color-active;
+  }
+}

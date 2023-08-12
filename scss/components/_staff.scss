@@ -1,0 +1,40 @@
+.staff {
+  @include flex-column(1rem);
+  display: none;
+
+  // FOR ACTIVE CONTENT
+  &--active {
+    display: flex;
+  }
+
+  &__card {
+    @include flex;
+    gap: 2.2rem;
+    padding: 1.5rem 2rem;
+    background-color: $color-white;
+    cursor: pointer;
+
+    // FOR ACTIVE CARD
+    &--active {
+      border: 2px solid $color-active;
+    }
+  }
+
+  &__img {
+    border-radius: 100%;
+  }
+
+  &__name {
+    font-size: 1.4rem;
+    font-weight: $font-medium;
+    color: #292d32;
+  }
+
+  &__mail {
+    font-size: 1.2rem;
+    color: #828f9a;
+    font-weight: $font-regular;
+    line-height: 19px; /* 158.333% */
+    margin-top: 5px;
+  }
+}
