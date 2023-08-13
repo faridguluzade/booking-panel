@@ -1,0 +1,208 @@
+.date-time {
+  grid-template-columns: 1.1fr 1fr;
+  gap: 1.5rem;
+
+  display: none;
+}
+
+.date-time--active {
+  display: grid;
+}
+
+.date {
+  // FOR SELECTED DAY
+  .day--selected {
+    background-color: $color-primary;
+    color: $color-white;
+  }
+
+  // FOR AVIABLE DAy
+  .aviable {
+    color: $color-black;
+  }
+
+  // FOR INACTIVE DAYS
+  .inactive {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  header {
+    @include flex;
+    justify-content: center;
+    gap: 2.1rem;
+
+    img {
+      font-size: 2.4rem;
+      cursor: pointer;
+    }
+  }
+
+  &__current {
+    font-size: 1.4rem;
+    font-weight: $font-regular;
+  }
+
+  &__calendar {
+    background-color: $color-white;
+    margin-top: 1.9rem;
+  }
+
+  &__weeks {
+    @include flex;
+    justify-content: space-between;
+    padding: 1.5rem 2.4rem 0.9rem 2.4rem;
+    border-bottom: 1px solid $color-border-gray;
+
+    li {
+      font-size: 1.3rem;
+      color: $color-gray-2;
+      cursor: pointer;
+    }
+  }
+
+  &__days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 0.8rem;
+
+    padding: 1rem;
+
+    li {
+      font-size: 1.5rem;
+      color: $color-gray-3;
+      background-color: $color-gray-4;
+
+      @include flex;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+
+      cursor: pointer;
+    }
+  }
+}
+
+.time {
+  &__title {
+    font-size: 1.4rem;
+    font-weight: $font-regular;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  &__wrapper {
+    background-color: $color-white;
+    margin-top: 1.9rem;
+  }
+
+  &__date {
+    color: $color-primary;
+    font-size: 1.4rem;
+    font-weight: $font-regular;
+    text-align: center;
+    padding: 1.5rem 0 0.8rem 0;
+    border-bottom: 1px solid $color-border-gray;
+  }
+
+  &__box {
+    padding: 1.2rem 1.5rem;
+  }
+
+  &__schedules {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 1rem;
+
+    div {
+      padding: 0.7rem 2.2rem 0.6rem 2.1rem;
+      background-color: $color-gray-4;
+      @include flex-column(0.8rem);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    p {
+      font-size: 1.4rem;
+    }
+  }
+
+  .selected {
+    color: $color-white;
+    background-color: $color-active;
+  }
+}
+
+// header .icons span {
+//   height: 38px;
+//   width: 38px;
+//   margin: 0 1px;
+//   cursor: pointer;
+//   color: #878787;
+//   text-align: center;
+//   line-height: 38px;
+//   font-size: 1.9rem;
+//   user-select: none;
+//   border-radius: 50%;
+// }
+// .icons span:last-child {
+//   margin-right: -10px;
+// }
+// header .icons span:hover {
+//   background: #f2f2f2;
+// }
+// header .current-date {
+//   font-size: 1.45rem;
+//   font-weight: 500;
+// }
+
+// &__calendar ul {
+//     display: flex;
+//     flex-wrap: wrap;
+//     list-style: none;
+//     text-align: center;
+//   }
+//   &__calendar .days {
+//     margin-bottom: 20px;
+//   }
+//   &__calendar li {
+//     color: #333;
+//     width: calc(100% / 7);
+//     font-size: 1.07rem;
+//   }
+//   &__calendar .weeks li {
+//     font-weight: 500;
+//     cursor: default;
+//   }
+//   &__calendar .days li {
+//     z-index: 1;
+//     cursor: pointer;
+//     position: relative;
+//     margin-top: 30px;
+//   }
+//   .days li.inactive {
+//     color: #aaa;
+//   }
+//   .days li.active {
+//     color: #fff;
+//   }
+//   .days li::before {
+//     position: absolute;
+//     content: "";
+//     left: 50%;
+//     top: 50%;
+//     height: 40px;
+//     width: 40px;
+//     z-index: -1;
+//     border-radius: 50%;
+//     transform: translate(-50%, -50%);
+//   }
+//   .days li.active::before {
+//     background: #9b59b6;
+//   }
+//   .days li:not(.active):hover::before {
+//     background: #f2f2f2;
+//   }

@@ -13,11 +13,6 @@
     padding: 1.5rem 2rem;
     background-color: $color-white;
     cursor: pointer;
-
-    // FOR ACTIVE CARD
-    &--active {
-      border: 2px solid $color-active;
-    }
   }
 
   &__img {

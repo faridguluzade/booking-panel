@@ -42,4 +42,14 @@
       background-color: $color-active;
     }
   }
+
+  // FOR ACTIVE CLASS
+  &__link--confirmed:link,
+  &__link--confirmed:visited {
+    color: $color-primary;
+
+    .sidebar__num {
+      background-color: $color-primary;
+    }
+  }
 }

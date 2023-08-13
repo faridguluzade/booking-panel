@@ -1,8 +1,38 @@
 .confirmation {
   &__form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+    row-gap: 2.5rem;
   }
 
   &__input-box {
+    @include flex-column(0.9rem);
+
+    input {
+      border-radius: 2px;
+      background-color: $color-white;
+      border: 1px solid $color-border-gray;
+      height: 46px;
+      padding: 1.9rem 2.6rem;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  &__input-box:last-child {
+    grid-column: 1 / span 2;
+  }
+
+  .required::after {
+    content: "*";
+    color: #ef264d;
+    font-size: 1.4rem;
+    padding-left: 3px;
   }
 
   &__note-box {
@@ -12,9 +42,10 @@
   }
 
   &__list {
-    @include flex-column(0.8rem);
-
+    @include flex-column(1.8rem);
+    border-radius: 2px;
     background-color: $color-white;
+    border: 1px solid $color-border-gray;
     padding: 1.9rem 2.6rem;
   }
 

@@ -25,3 +25,11 @@ body {
 
   background: linear-gradient(135deg, #8e53e4 0%, #4b22b9 100%);
 }
+
+.selected {
+  border: 2px solid $color-active;
+}
+
+.tab--active {
+  display: flex;
+}

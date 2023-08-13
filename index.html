@@ -6,35 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Panel</title>
     <link rel="stylesheet" href="./scss/main.css">
+
+    <script type="module" defer src="./js/script.js"></script>
+    <script type="module" defer src="./js/controller.js"></script>
+
+
 </head>
 
 <body>
 
-    <div class="panel container">
+    <div class="panel">
 
         <aside class="sidebar">
             <nav class="sidebar__nav">
                 <ul class="sidebar__list">
-                    <li class="sidebar__item" data-tab="1">
-                        <a href="#" class="sidebar__link  sidebar__link--confirmed">
+                    <li class="sidebar__item">
+                        <a href="#" class="sidebar__link sidebar__link--active" data-tab="1">
                             <span class="sidebar__num">1</span>
                             Staff
                         </a>
                     </li>
-                    <li class="sidebar__item" data-tab="2">
-                        <a href="#" class="sidebar__link ">
+                    <li class="sidebar__item">
+                        <a href="#" class="sidebar__link" data-tab="2">
                             <span class="sidebar__num">2</span>
                             Service
                         </a>
                     </li>
-                    <li class="sidebar__item" data-tab="3">
-                        <a href="#" class="sidebar__link">
+                    <li class="sidebar__item">
+                        <a href="#" class="sidebar__link" data-tab="3">
                             <span class="sidebar__num">3</span>
                             Date & Time
                         </a>
                     </li>
-                    <li class="sidebar__item" data-tab="4">
-                        <a href="#" class="sidebar__link sidebar__link--active ">
+                    <li class="sidebar__item">
+                        <a href="#" class="sidebar__link" data-tab="4">
                             <span class="sidebar__num">4</span>
                             Confirmation
                         </a>
@@ -46,14 +51,14 @@
         <div class="content">
             <header class="header">
                 <div class="header__box">
-                    <h2 class="header__heading">Confirm detailes</h2>
+                    <h2 class="header__heading">Select staff</h2>
                     <img class="header__icon" src="./assets/icons/Combined Shape.svg" alt="close icon">
                 </div>
             </header>
             <main class="tab">
                 <!-- STAFF START  -->
-                <div class="staff  tab__content--1">
-                    <div class="staff__card staff__card--active">
+                <div class="staff tab--active  tab__content--1">
+                    <!-- <div class="staff__card ">
                         <figure>
                             <img class="staff__img" src="./assets/images/staff-1.png" alt="doctor photo">
                         </figure>
@@ -61,22 +66,13 @@
                             <h3 class="staff__name">Alex Rosetta</h3>
                             <p class="staff__mail">alexyrosetta@egmail.com</p>
                         </div>
-                    </div>
-                    <div class="staff__card">
-                        <figure>
-                            <img class="staff__img" src="./assets/images/staff-2.png" alt="doctor photo">
-                        </figure>
-                        <div class="staff__content-box">
-                            <h3 class="staff__name">Maria July</h3>
-                            <p class="staff__mail">mariajuly@egmail.com</p>
-                        </div>
-                    </div>
+                    </div>  -->
                 </div>
                 <!-- STAFF END  -->
 
                 <!-- SERVICE START -->
-                <div class="service  tab__content--2">
-                    <div class="service__card">
+                <div class="service tab__content--2">
+                    <!-- <div class="service__card">
                         <div class="service__wrapper">
                             <figure>
                                 <img class="service__img" src="./assets/images/service-1.png" alt="">
@@ -85,63 +81,76 @@
                                 <h3 class="service__title">Oral hygiene</h3>
                                 <time class="service__time">1 hour</time>
                             </div>
-
                         </div>
-
                         <span class="service__price">
                             50$
                         </span>
-
                     </div>
-                    <div class="service__card">
-                        <div class="service__wrapper">
-                            <figure>
-                                <img class="service__img" src="./assets/images/service-2.png" alt="">
-                            </figure>
-                            <div class="service__content-box">
-                                <h3 class="service__title">Implants</h3>
-                                <time class="service__time">1 hour 30 minutes</time>
-                            </div>
-
-                        </div>
-
-                        <span class="service__price">
-                            120$
-                        </span>
-
-                    </div>
-                    <div class="service__card">
-                        <div class="service__wrapper">
-                            <figure>
-                                <img class="service__img" src="./assets/images/service-3.png" alt="">
-                            </figure>
-                            <div class="service__content-box">
-                                <h3 class="service__title">Check up</h3>
-                                <time class="service__time">1 hour 12 minutes</time>
-                            </div>
-
-                        </div>
-
-                        <span class="service__price">
-                            140$
-                        </span>
-
-                    </div>
+                 -->
                 </div>
                 <!-- SERVICE END -->
 
-                <div class="confirmation tab__content--4">
+                <!-- DATE & TIME START -->
+                <div class="date-time ">
+
+                    <div class="date">
+                        <header>
+                            <img id="prev" src="./assets/icons/iconamoon_arrow-left.svg" alt="arrow left logo">
+                            <h3 class="date__current">August 2023</h3>
+                            <img id="next" src="./assets/icons/iconamoon_arrow-right.svg" alt="arrow right logo">
+                        </header>
+                        <div class="date__calendar">
+                            <ul class="date__weeks">
+                                <li>Sun</li>
+                                <li>Mon</li>
+                                <li>Tue</li>
+                                <li>Wed</li>
+                                <li>Thu</li>
+                                <li>Fri</li>
+                                <li>Sat</li>
+                            </ul>
+                            <ul class="date__days">
+                                <!-- ...  -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="time">
+                        <header>
+                            <h3 class="time__title">Time</h3>
+                        </header>
+
+                        <div class="time__wrapper">
+                            <h2 class="time__date">2023-03-04</h2>
+
+                            <div class="time__box">
+                                <div class="time__schedules">
+                                    <!-- <div>
+                                        <p class="time__start">09:00</p>
+                                        <p class="time__end">09:30</p>
+                                    </div>
+                                 -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--  DATE & TIME END -->
+
+                <!-- CONFIRMATION START -->
+                <!-- <div class="confirmation tab__content--4">
                     <div class="confirmation__form">
                         <div class="confirmation__input-box">
-                            <label for="firstname">First name</label>
+                            <label class="required" for="firstname">First name</label>
                             <input type="text" id="firstname">
                         </div>
                         <div class="confirmation__input-box">
-                            <label for="lastname">Last name</label>
+                            <label class="required" for="lastname">Last name</label>
                             <input type="text" id="lastname">
                         </div>
                         <div class="confirmation__input-box">
-                            <label for="email">E-mail</label>
+                            <label class="required" for="email">E-mail</label>
                             <input type="email" id="email">
                         </div>
                         <div class="confirmation__input-box">
@@ -167,13 +176,18 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> -->
+                <!-- CONFIRMATION END -->
             </main>
 
 
             <footer class="footer">
                 <div class="btn-box">
                     <button class="btn btn--back">Back</button>
+                    <div class="warning-message">
+                        <img src="./assets/icons/error.svg" alt="error icon">
+
+                    </div>
                     <button class="btn btn--next">Next</button>
                 </div>
             </footer>

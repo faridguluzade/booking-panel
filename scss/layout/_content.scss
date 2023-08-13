@@ -6,7 +6,11 @@
 }
 
 .tab {
-  min-height: 60vh;
+  min-height: 416.33px;
   padding: 2.5rem 3rem;
   background-color: $color-gray;
+
+  &--active {
+    display: flex;
+  }
 }
