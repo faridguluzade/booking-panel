@@ -1,19 +1,15 @@
 .date-time {
+  display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: 1.5rem;
-
-  display: none;
-}
-
-.date-time--active {
-  display: grid;
 }
 
 .date {
   // FOR SELECTED DAY
-  .day--selected {
+  .selected {
     background-color: $color-primary;
-    color: $color-white;
+    color: $color-white !important;
+    border: none;
   }
 
   // FOR AVIABLE DAy
@@ -116,7 +112,11 @@
     grid-template-rows: repeat(4, 1fr);
     gap: 1rem;
 
-    div {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+
+    .times {
       padding: 0.7rem 2.2rem 0.6rem 2.1rem;
       background-color: $color-gray-4;
       @include flex-column(0.8rem);
@@ -130,79 +130,14 @@
     }
   }
 
+  .active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  // FOR SELECTED TIME
   .selected {
     color: $color-white;
     background-color: $color-active;
   }
 }
-
-// header .icons span {
-//   height: 38px;
-//   width: 38px;
-//   margin: 0 1px;
-//   cursor: pointer;
-//   color: #878787;
-//   text-align: center;
-//   line-height: 38px;
-//   font-size: 1.9rem;
-//   user-select: none;
-//   border-radius: 50%;
-// }
-// .icons span:last-child {
-//   margin-right: -10px;
-// }
-// header .icons span:hover {
-//   background: #f2f2f2;
-// }
-// header .current-date {
-//   font-size: 1.45rem;
-//   font-weight: 500;
-// }
-
-// &__calendar ul {
-//     display: flex;
-//     flex-wrap: wrap;
-//     list-style: none;
-//     text-align: center;
-//   }
-//   &__calendar .days {
-//     margin-bottom: 20px;
-//   }
-//   &__calendar li {
-//     color: #333;
-//     width: calc(100% / 7);
-//     font-size: 1.07rem;
-//   }
-//   &__calendar .weeks li {
-//     font-weight: 500;
-//     cursor: default;
-//   }
-//   &__calendar .days li {
-//     z-index: 1;
-//     cursor: pointer;
-//     position: relative;
-//     margin-top: 30px;
-//   }
-//   .days li.inactive {
-//     color: #aaa;
-//   }
-//   .days li.active {
-//     color: #fff;
-//   }
-//   .days li::before {
-//     position: absolute;
-//     content: "";
-//     left: 50%;
-//     top: 50%;
-//     height: 40px;
-//     width: 40px;
-//     z-index: -1;
-//     border-radius: 50%;
-//     transform: translate(-50%, -50%);
-//   }
-//   .days li.active::before {
-//     background: #9b59b6;
-//   }
-//   .days li:not(.active):hover::before {
-//     background: #f2f2f2;
-//   }

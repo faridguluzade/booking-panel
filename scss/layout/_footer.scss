@@ -18,6 +18,14 @@
       background-color: #f7f8fb;
       border: 1px solid $color-border-gray;
       color: #8f9ca7;
+
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    &--active {
+      opacity: 1;
+      visibility: visible;
     }
 
     &--next {
@@ -27,7 +35,7 @@
     }
   }
 
-  .warning-message {
+  .warning {
     @include flex;
     gap: 1rem;
     padding: 0.9rem 1.4rem;
@@ -35,17 +43,17 @@
     border-radius: 2px;
     cursor: pointer;
     opacity: 0;
-    transition: all 0.3s;
+    transition: all 0.4s;
 
-    p {
+    &--active {
+      opacity: 1;
+    }
+
+    &__message {
       font-size: 1.2rem;
       text-transform: uppercase;
       font-weight: $font-semiBold;
       color: $color-white;
     }
-  }
-
-  .warning-message--active {
-    opacity: 1;
   }
 }

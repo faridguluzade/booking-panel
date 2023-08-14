@@ -1,8 +1,5 @@
 import { controlCalendar } from "./controller.js";
-
-const daysTag = document.querySelector(".date__days");
-const currentDate = document.querySelector(".date__current");
-const prevNextIcon = document.querySelectorAll(".date img");
+import { daysTag, currentDate, prevNextIcon } from "./selectors.js";
 
 // getting new date, current year and month
 let date = new Date();
@@ -52,6 +49,7 @@ const renderCalendar = function () {
   currentDate.innerText = `${months[currMonth]} ${currYear}`;
   daysTag.innerHTML = liTag;
 };
+
 renderCalendar();
 controlCalendar();
 

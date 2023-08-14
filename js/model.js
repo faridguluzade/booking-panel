@@ -10,3 +10,10 @@ export let state = {
     phone: "",
   },
 };
+
+export let noteState = {
+  staffName: "",
+  serviceName: "",
+  date: "",
+  total: null,
+};

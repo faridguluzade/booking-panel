@@ -30,6 +30,6 @@ body {
   border: 2px solid $color-active;
 }
 
-.tab--active {
-  display: flex;
+::selection {
+  background-color: $color-primary;
 }

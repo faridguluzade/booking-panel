@@ -1,3 +1,4 @@
+@import "./abstracts/animations";
 @import "./abstracts/mixins";
 @import "./abstracts/utilities";
 @import "./abstracts/variables";
@@ -14,5 +15,6 @@
 @import "./layout/content";
 @import "./layout/footer";
 @import "./layout/header";
+@import "./layout/modal";
 @import "./layout/panel";
 @import "./layout/sidebar";

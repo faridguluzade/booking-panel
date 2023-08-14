@@ -5,12 +5,16 @@
   grid-template-rows: min-content max-content min-content;
 }
 
-.tab {
+.tabs {
   min-height: 416.33px;
   padding: 2.5rem 3rem;
   background-color: $color-gray;
+}
+
+.tab {
+  display: none;
 
   &--active {
-    display: flex;
+    display: block;
   }
 }

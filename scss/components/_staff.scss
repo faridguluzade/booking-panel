@@ -1,11 +1,6 @@
 .staff {
   @include flex-column(1rem);
-  display: none;
-
-  // FOR ACTIVE CONTENT
-  &--active {
-    display: flex;
-  }
+  display: flex;
 
   &__card {
     @include flex;

@@ -4,7 +4,7 @@ const serviceView = (services) => {
   const markup = services
     .map((service) => {
       return `
-            <div class="service__card" data-service-id=${service.id}>
+            <div class="service__card" data-id=${service.id}>
             <div class="service__wrapper">
                 <figure>
                     <img class="service__img" src="./assets/images/${service.image}" alt="service image">

@@ -2,14 +2,8 @@
   background-color: #292d32;
   padding: 3rem 3.7rem;
 
-  &__nav {
-  }
-
   &__list {
     @include flex-column(2.5rem);
-  }
-
-  &__item {
   }
 
   &__link:link,
@@ -33,6 +27,10 @@
     align-items: center;
   }
 
+  img {
+    display: none;
+  }
+
   // FOR ACTIVE CLASS
   &__link--active:link,
   &__link--active:visited {
@@ -49,7 +47,11 @@
     color: $color-primary;
 
     .sidebar__num {
-      background-color: $color-primary;
+      display: none;
+    }
+
+    img {
+      display: block;
     }
   }
 }

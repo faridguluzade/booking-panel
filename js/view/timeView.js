@@ -4,10 +4,10 @@ const timeView = (timeArr) => {
   const markup = timeArr
     .map((t) => {
       return ` 
-    <div>
-        <p class="time__start">${t.start_time}</p>
-        <p class="time__end">${t.end_time}</p>
-    </div>
+          <div class="times">
+            <p class="time__start">${t.start_time}</p>
+            <p class="time__end">${t.end_time}</p>
+         </div>
     `;
     })
     .join("");

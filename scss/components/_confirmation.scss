@@ -35,12 +35,6 @@
     padding-left: 3px;
   }
 
-  &__note-box {
-  }
-
-  &__title {
-  }
-
   &__list {
     @include flex-column(1.8rem);
     border-radius: 2px;

@@ -2,20 +2,40 @@ import staffView from "./view/staffView.js";
 import serviceView from "./view/serviceView.js";
 import calendarView from "./view/calendarView.js";
 import timeView from "./view/timeView.js";
+import noteView from "./view/noteView.js";
+import headerView from "./view/headerView.js";
 
-import { staff } from "./constants/index.js";
-import { services } from "./constants/index.js";
-import { time } from "./constants/index.js";
+import {
+  aviableDays,
+  renderWarning,
+  renderNextTab,
+  formatDate,
+  getInputVal,
+  openModal,
+  renderPevTab,
+  reset,
+} from "./helper.js";
 
-import { aviableDays, renderWarning } from "./helper.js";
+import {
+  staffEl,
+  serviceEl,
+  daysEl,
+  dateHeader,
+  timeContainer,
+  btnNext,
+  btnBack,
+} from "./selectors.js";
 
-import { state } from "./model.js";
+import { staff, time, services } from "./constants/index.js";
+import { state, noteState } from "./model.js";
 
 const controlStaff = function () {
   // set view
   staffView(staff);
 
-  const staffEl = document.querySelector(".staff");
+  // set header view
+  headerView("Select staff");
+
   const staffCards = document.querySelectorAll(".staff__card");
 
   // select staff
@@ -28,9 +48,13 @@ const controlStaff = function () {
     staffCards.forEach((s) => s.classList.remove("selected"));
 
     clicked.classList.add("selected");
-    const staffId = clicked.dataset.id;
+
+    // get the staff name
+    const staffName = clicked.querySelector(".staff__name").textContent;
+    noteState.staffName = staffName;
 
     // push the staff id to the state
+    const staffId = clicked.dataset.id;
     state.staff_id = staffId;
   });
 };
@@ -38,48 +62,200 @@ const controlStaff = function () {
 const controlService = function () {
   // set view
   serviceView(services);
+
+  const serviceCards = document.querySelectorAll(".service__card");
+
+  serviceEl.addEventListener("click", function (e) {
+    const clicked = e.target.closest(".service__card");
+
+    if (!clicked) return;
+
+    // Remove active class;
+    serviceCards.forEach((s) => s.classList.remove("selected"));
+
+    // add selected to the element
+    clicked.classList.add("selected");
+
+    const price = clicked
+      .querySelector(".service__price")
+      .textContent.trim()
+      .split("$")
+      .join("");
+
+    // get the service name
+    const serviceName = clicked.querySelector(".service__title").textContent;
+    noteState.serviceName = serviceName;
+    noteState.total = price;
+
+    const serviceId = clicked.dataset.id;
+    // push the staff id to the state
+    state.service_id = serviceId;
+  });
 };
 
 export const controlCalendar = function () {
+  // set view
   calendarView(aviableDays);
+
+  const aviableDaysEl = document.querySelectorAll(".aviable");
+
+  daysEl.addEventListener("click", function (e) {
+    const clicked = e.target.closest(".aviable");
+
+    if (!clicked) return;
+
+    // Remove active class;
+    aviableDaysEl.forEach((d) => d.classList.remove("selected"));
+
+    // Add selected class to the clicked element
+    clicked.classList.add("selected");
+
+    // Show the list of the time
+    timeContainer.classList.add("active");
+
+    const day = clicked.textContent;
+    const formattedDate = formatDate(day);
+
+    // add the date to the noteState
+    noteState.date = formattedDate;
+
+    dateHeader.textContent = formattedDate;
+    // push the date to the state
+    state.date = formattedDate;
+  });
 };
 
 const controlTime = function () {
+  // set view
   timeView(time);
+
+  const timeList = document.querySelectorAll(".times");
+
+  timeContainer.addEventListener("click", function (e) {
+    const clicked = e.target.closest(".times");
+
+    if (!clicked) return;
+
+    timeList.forEach((t) => t.classList.remove("selected"));
+
+    // add selected to the element
+    clicked.classList.add("selected");
+
+    const startTime = clicked.querySelector(".time__start").textContent;
+    const endTime = clicked.querySelector(".time__end").textContent;
+
+    // add the time to the noteState
+    noteState.date += ` / ${startTime} ${endTime}`;
+
+    // push the time to the state
+    state.time = startTime;
+  });
+};
+
+const controlConfirmation = function () {
+  // set view
+  noteView(noteState);
+  btnNext.textContent = "Confirm Booking";
 };
 
 const controlNext = function () {
-  const nextBtn = document.querySelector(".btn--next");
-  const tabItem = document.querySelector(".sidebar__link--active");
-  const tabNum = +tabItem.dataset.tab;
-  const tabActive = document.querySelector(`.tab__content--${tabNum}`);
+  btnNext.addEventListener("click", function () {
+    const tabItem = document.querySelector(".sidebar__link--active");
+    const tabNum = +tabItem.dataset.tab;
 
-  nextBtn.addEventListener("click", function (e) {
     if (tabNum === 1) {
       if (!state.staff_id) {
         renderWarning("staff");
         return;
       }
 
-      // remove active class from sidebar
-      tabItem.classList.remove("sidebar__link--active");
-      tabItem.classList.add("sidebar__link--confirmed");
+      // set header view
+      headerView("Select service");
 
-      // add active class to the sidebar
-      document
-        .querySelector(`[data-tab="${tabNum + 1}"]`)
-        .classList.add("sidebar__link--active");
+      // render next tab
+      renderNextTab(tabItem, tabNum);
 
-      // remove active class from tab
-      document
-        .querySelector(`.tab__content--${tabNum}`)
-        .classList.remove("tab--active");
-
-      // activate active class to the tab
-      document
-        .querySelector(`.tab__content--${tabNum + 1}`)
-        .classList.add("tab--active");
+      // activate back button for anothers tab page
+      btnBack.classList.add("btn--active");
     }
+
+    if (tabNum === 2) {
+      if (!state.service_id) {
+        renderWarning("service");
+        return;
+      }
+
+      // set header view
+      headerView("Date & time");
+
+      // render next tab
+      renderNextTab(tabItem, tabNum);
+    }
+
+    if (tabNum === 3) {
+      if (!state.date || !state.time) {
+        renderWarning("date & time");
+        return;
+      }
+
+      // set header view
+      headerView("Confirm detailes");
+
+      // render next tab
+      renderNextTab(tabItem, tabNum);
+
+      controlConfirmation();
+    }
+
+    if (tabNum === 4) {
+      let name = getInputVal("firstname");
+      let surname = getInputVal("lastname");
+      let email = getInputVal("email");
+      let phone = getInputVal("phone");
+
+      if (!name || !surname || !email) {
+        openModal("Please, fill the all required fields!", false);
+        return;
+      }
+
+      state.customer = { name, surname, email, phone };
+
+      console.log(state);
+
+      openModal("Confirmation successfully completed!", true);
+
+      reset();
+    }
+  });
+};
+
+const controlBack = function () {
+  const btnBack = document.querySelector(".btn--back");
+
+  btnBack.addEventListener("click", function () {
+    const tabItem = document.querySelector(".sidebar__link--active");
+    const tabNum = +tabItem.dataset.tab;
+
+    if (tabNum === 2) {
+      document.querySelector(".btn--back").classList.remove("btn--active");
+
+      // set header view
+      headerView("Select staff");
+    }
+
+    if (tabNum === 3) {
+      // set header view
+      headerView("Select service");
+    }
+
+    if (tabNum === 4) {
+      document.querySelector(".btn--next").textContent = "Next";
+
+      // set header view
+      headerView("Date & time");
+    }
+
+    renderPevTab(tabItem, tabNum);
   });
 };
 
@@ -89,6 +265,7 @@ const init = function () {
   controlCalendar();
   controlTime();
   controlNext();
+  controlBack();
 };
 
 init();
