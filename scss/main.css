@@ -1,74 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,300&display=swap");
-@keyframes moveInTop {
-  0% {
-    opacity: 0;
-    transform: translateY(-10rem);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.container {
-  max-width: 132rem;
-  margin: 0 auto;
-}
-
-.grid {
-  display: grid !important;
-  -moz-column-gap: 2rem;
-       column-gap: 2rem;
-}
-@media only screen and (max-width: 53.75em) {
-  .grid {
-    row-gap: 2.4rem;
-  }
-}
-
-.grid--1-cols {
-  grid-template-columns: 1fr;
-}
-
-.grid--2-cols {
-  grid-template-columns: repeat(2, 1fr);
-}
-@media only screen and (max-width: 53.75em) {
-  .grid--2-cols {
-    grid-template-columns: 1fr;
-  }
-}
-
-.grid--3-cols {
-  grid-template-columns: repeat(3, 1fr);
-}
-@media only screen and (max-width: 53.75em) {
-  .grid--3-cols {
-    grid-template-columns: 1fr;
-  }
-}
-
-.grid--4-cols {
-  grid-template-columns: repeat(4, 1fr);
-}
-@media only screen and (max-width: 53.75em) {
-  .grid--4-cols {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-@media only screen and (max-width: 37.5em) {
-  .grid--4-cols {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.grid--center-v {
-  align-items: center;
-}
-
-.text-center {
-  text-align: center;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -479,7 +409,6 @@ body {
   border-radius: 5px;
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
   z-index: 10;
-  animation: moveInLeft 1s ease-out;
 }
 .modal__text {
   font-size: 1.8rem;
@@ -542,6 +471,7 @@ body {
   gap: 1.2rem;
   font-size: 1.4rem;
   color: #626c76;
+  cursor: not-allowed;
 }
 .sidebar__num {
   font-size: 1.2rem;
@@ -560,12 +490,14 @@ body {
 }
 .sidebar__link--active:link, .sidebar__link--active:visited {
   color: #53d56c;
+  cursor: pointer;
 }
 .sidebar__link--active:link .sidebar__num, .sidebar__link--active:visited .sidebar__num {
   background-color: #53d56c;
 }
 .sidebar__link--confirmed:link, .sidebar__link--confirmed:visited {
   color: #6c70dc;
+  cursor: pointer;
 }
 .sidebar__link--confirmed:link .sidebar__num, .sidebar__link--confirmed:visited .sidebar__num {
   display: none;

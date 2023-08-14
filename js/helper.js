@@ -1,3 +1,4 @@
+import headerView from "./view/headerView.js";
 import { date } from "./constants/index.js";
 import { state } from "./model.js";
 import {
@@ -6,6 +7,9 @@ import {
   modal,
   overlay,
   btnCloseModal,
+  btnBack,
+  dateHeader,
+  timeContainer,
 } from "./selectors.js";
 
 export const aviableDays = date.map((d) => new Date(d).getDate());
@@ -20,9 +24,46 @@ export const closeWarning = function () {
   warningEl.classList.remove("warning--active");
 };
 
-export const renderNextTab = function (tabItem, tabNum) {
+export const renderNextTab = function () {
+  const tabItem = document.querySelector(".sidebar__link--active");
+  const tabNum = +tabItem.dataset.tab;
+
   // remove warning message
   closeWarning();
+
+  if (tabNum === 1) {
+    // activate back button for anothers tab page
+    btnBack.classList.add("btn--active");
+    // set header view
+    headerView("Select service");
+  }
+
+  if (tabNum === 2) {
+    // set header view
+    headerView("Date & time");
+  }
+
+  if (tabNum === 3) {
+    // set header view
+    headerView("Confirm detailes");
+  }
+
+  if (!state.date || !state.time) {
+    const timeList = document.querySelectorAll(".times");
+    const aviableDaysEl = document.querySelectorAll(".aviable");
+
+    // Remove active class;
+    timeList.forEach((t) => t.classList.remove("selected"));
+    aviableDaysEl.forEach((d) => d.classList.remove("selected"));
+    dateHeader.textContent = "Select date";
+    timeContainer.classList.remove("active");
+  }
+
+  if (!state.service_id) {
+    const serviceCards = document.querySelectorAll(".service__card");
+    // Remove active class;
+    serviceCards.forEach((s) => s.classList.remove("selected"));
+  }
 
   // remove active class from sidebar
   tabItem.classList.remove("sidebar__link--active");
@@ -44,9 +85,17 @@ export const renderNextTab = function (tabItem, tabNum) {
     .classList.add("tab--active");
 };
 
-export const renderPevTab = function (tabItem, tabNum) {
+export const renderPevTab = function () {
+  const tabItem = document.querySelector(".sidebar__link--active");
+  const tabNum = +tabItem.dataset.tab;
+
   // remove warning message
   closeWarning();
+
+  if (tabNum === 2) {
+    btnBack.classList.remove("btn--active");
+    // set header view
+  }
 
   // remove active class from sidebar
   tabItem.classList.remove("sidebar__link--active");

@@ -12,8 +12,6 @@
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
   z-index: 10;
 
-  animation: moveInLeft 1s ease-out;
-
   &__text {
     font-size: 1.8rem;
     font-weight: $font-medium;

@@ -60,6 +60,7 @@ const controlStaff = function () {
     // Remove active class;
     staffCards.forEach((s) => s.classList.remove("selected"));
 
+    // add active class to the
     clicked.classList.add("selected");
 
     // get the staff name
@@ -69,6 +70,9 @@ const controlStaff = function () {
     // push the staff id to the state
     const staffId = clicked.dataset.id;
     state.staff_id = staffId;
+
+    // step to the next page by clicking the card
+    renderNextTab();
   });
 };
 
@@ -114,6 +118,9 @@ const controlService = function () {
     const serviceId = clicked.dataset.id;
     // push the staff id to the state
     state.service_id = serviceId;
+
+    // step to the next page by clicking the card
+    renderNextTab();
   });
 };
 
@@ -191,14 +198,20 @@ const controlTime = function () {
 
     // push the time to the state
     state.time = startTime;
+
+    // step to the next page by clicking the card
+    renderNextTab();
+
+    // make note view
+    controlConfirmation();
   });
 };
 
-const controlConfirmation = function () {
+function controlConfirmation() {
   // set view
   noteView(noteState);
   btnNext.textContent = "Confirm Booking";
-};
+}
 
 const controlNext = function () {
   btnNext.addEventListener("click", function () {
@@ -210,21 +223,8 @@ const controlNext = function () {
         renderWarning("staff");
         return;
       }
-
-      if (!state.service_id) {
-        const serviceCards = document.querySelectorAll(".service__card");
-        // Remove active class;
-        serviceCards.forEach((s) => s.classList.remove("selected"));
-      }
-
-      // set header view
-      headerView("Select service");
-
       // render next tab
-      renderNextTab(tabItem, tabNum);
-
-      // activate back button for anothers tab page
-      btnBack.classList.add("btn--active");
+      renderNextTab();
     }
 
     if (tabNum === 2) {
@@ -232,22 +232,8 @@ const controlNext = function () {
         renderWarning("service");
         return;
       }
-      if (!state.date || state.time) {
-        const timeList = document.querySelectorAll(".times");
-        const aviableDaysEl = document.querySelectorAll(".aviable");
-
-        // Remove active class;
-        timeList.forEach((t) => t.classList.remove("selected"));
-        aviableDaysEl.forEach((d) => d.classList.remove("selected"));
-        dateHeader.textContent = "Select date";
-        timeContainer.classList.remove("active");
-      }
-
-      // set header view
-      headerView("Date & time");
-
       // render next tab
-      renderNextTab(tabItem, tabNum);
+      renderNextTab();
     }
 
     if (tabNum === 3) {
@@ -256,11 +242,8 @@ const controlNext = function () {
         return;
       }
 
-      // set header view
-      headerView("Confirm detailes");
-
       // render next tab
-      renderNextTab(tabItem, tabNum);
+      renderNextTab();
 
       controlConfirmation();
     }
@@ -275,11 +258,14 @@ const controlNext = function () {
 
       state.customer = { name, surname, email, phone };
 
-      console.log(state);
-
       openModal("Confirmation successfully completed!", true);
 
-      // reset();
+      const bookingState = { ...state };
+
+      console.log(bookingState);
+
+      // reset all data
+      reset();
     }
   });
 };
@@ -290,8 +276,6 @@ const controlBack = function () {
     const tabNum = +tabItem.dataset.tab;
 
     if (tabNum === 2) {
-      btnBack.classList.remove("btn--active");
-      // set header view
       headerView("Select staff");
     }
 
@@ -306,7 +290,7 @@ const controlBack = function () {
       headerView("Date & time");
     }
 
-    renderPevTab(tabItem, tabNum);
+    renderPevTab();
   });
 };
 
