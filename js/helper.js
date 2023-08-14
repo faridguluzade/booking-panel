@@ -91,6 +91,15 @@ export const getInputVal = function (id) {
   return document.querySelector(`#${id}`).value;
 };
 
+export const getFormObject = function () {
+  let name = getInputVal("firstname");
+  let surname = getInputVal("lastname");
+  let email = getInputVal("email");
+  let phone = getInputVal("phone");
+
+  return { name, surname, email, phone };
+};
+
 export const resetInputVal = function () {
   document.querySelectorAll("input").forEach((i) => (i.value = ""));
 };

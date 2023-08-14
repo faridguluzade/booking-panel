@@ -29,3 +29,5 @@ export const btnCloseModal = document.querySelector(".modal__close");
 export const daysTag = document.querySelector(".date__days");
 export const currentDate = document.querySelector(".date__current");
 export const prevNextIcon = document.querySelectorAll(".date img");
+
+export const selectedCards = document.querySelector(".selected");

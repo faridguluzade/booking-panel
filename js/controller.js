@@ -14,6 +14,7 @@ import {
   openModal,
   renderPevTab,
   reset,
+  getFormObject,
 } from "./helper.js";
 
 import {
@@ -44,6 +45,18 @@ const controlStaff = function () {
 
     if (!clicked) return;
 
+    if (state.staff_id) {
+      state.service_id = null;
+      state.date = "";
+      state.time = "";
+      state.customer = {
+        name: "",
+        surname: "",
+        email: "",
+        phone: "",
+      };
+    }
+
     // Remove active class;
     staffCards.forEach((s) => s.classList.remove("selected"));
 
@@ -69,6 +82,17 @@ const controlService = function () {
     const clicked = e.target.closest(".service__card");
 
     if (!clicked) return;
+
+    if (state.service_id) {
+      state.date = "";
+      state.time = "";
+      state.customer = {
+        name: "",
+        surname: "",
+        email: "",
+        phone: "",
+      };
+    }
 
     // Remove active class;
     serviceCards.forEach((s) => s.classList.remove("selected"));
@@ -104,6 +128,15 @@ export const controlCalendar = function () {
 
     if (!clicked) return;
 
+    if (state.date) {
+      state.customer = {
+        name: "",
+        surname: "",
+        email: "",
+        phone: "",
+      };
+    }
+
     // Remove active class;
     aviableDaysEl.forEach((d) => d.classList.remove("selected"));
 
@@ -135,6 +168,15 @@ const controlTime = function () {
     const clicked = e.target.closest(".times");
 
     if (!clicked) return;
+
+    if (state.date) {
+      state.customer = {
+        name: "",
+        surname: "",
+        email: "",
+        phone: "",
+      };
+    }
 
     timeList.forEach((t) => t.classList.remove("selected"));
 
@@ -169,6 +211,12 @@ const controlNext = function () {
         return;
       }
 
+      if (!state.service_id) {
+        const serviceCards = document.querySelectorAll(".service__card");
+        // Remove active class;
+        serviceCards.forEach((s) => s.classList.remove("selected"));
+      }
+
       // set header view
       headerView("Select service");
 
@@ -183,6 +231,16 @@ const controlNext = function () {
       if (!state.service_id) {
         renderWarning("service");
         return;
+      }
+      if (!state.date || state.time) {
+        const timeList = document.querySelectorAll(".times");
+        const aviableDaysEl = document.querySelectorAll(".aviable");
+
+        // Remove active class;
+        timeList.forEach((t) => t.classList.remove("selected"));
+        aviableDaysEl.forEach((d) => d.classList.remove("selected"));
+        dateHeader.textContent = "Select date";
+        timeContainer.classList.remove("active");
       }
 
       // set header view
@@ -208,10 +266,7 @@ const controlNext = function () {
     }
 
     if (tabNum === 4) {
-      let name = getInputVal("firstname");
-      let surname = getInputVal("lastname");
-      let email = getInputVal("email");
-      let phone = getInputVal("phone");
+      const { name, surname, email, phone } = getFormObject();
 
       if (!name || !surname || !email) {
         openModal("Please, fill the all required fields!", false);
@@ -224,21 +279,18 @@ const controlNext = function () {
 
       openModal("Confirmation successfully completed!", true);
 
-      reset();
+      // reset();
     }
   });
 };
 
 const controlBack = function () {
-  const btnBack = document.querySelector(".btn--back");
-
   btnBack.addEventListener("click", function () {
     const tabItem = document.querySelector(".sidebar__link--active");
     const tabNum = +tabItem.dataset.tab;
 
     if (tabNum === 2) {
-      document.querySelector(".btn--back").classList.remove("btn--active");
-
+      btnBack.classList.remove("btn--active");
       // set header view
       headerView("Select staff");
     }
@@ -249,8 +301,7 @@ const controlBack = function () {
     }
 
     if (tabNum === 4) {
-      document.querySelector(".btn--next").textContent = "Next";
-
+      btnNext.textContent = "Next";
       // set header view
       headerView("Date & time");
     }
