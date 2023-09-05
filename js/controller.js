@@ -262,8 +262,7 @@ const controlNext = function () {
 
       const bookingState = { ...state };
 
-      console.log(bookingState);
-
+      alert(JSON.stringify(bookingState));
       // reset all data
       reset();
     }
